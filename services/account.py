@@ -27,14 +27,13 @@ class AccountComplianceChecker:
         self.session_account = self.sts_client.get_caller_identity().get('Account')
         self.account_list = compliance_check_list
 
-    def create_account_item(self, control_id: str, control_title: str, compliance: str, severity: str, auto_remediation: str) -> dict:
-        if ParameterValidation().validate_parameter("Account", control_id, compliance, severity, auto_remediation):
+    def create_account_item(self, control_id: str, control_title: str, compliance: str, severity: str) -> dict:
+        if ParameterValidation().validate_parameter("Account", control_id, compliance, severity):
             return {
                 'control_id': control_id,
                 'control_title': control_title,
                 'compliance': compliance,
                 'severity': severity,
-                'auto_remediation': auto_remediation,
                 'resource_id': self.session_account
             }
         else:
@@ -101,14 +100,13 @@ class CrossAccountAccountComplianceChecker:
         self.session_account = self.sts_client.get_caller_identity().get('Account')
         self.account_list = compliance_check_list
 
-    def create_account_item(self, control_id: str, control_title: str, compliance: str, severity: str, auto_remediation: str) -> dict:
-        if ParameterValidation().validate_parameter("Account", control_id, compliance, severity, auto_remediation):
+    def create_account_item(self, control_id: str, control_title: str, compliance: str, severity: str) -> dict:
+        if ParameterValidation().validate_parameter("Account", control_id, compliance, severity):
             return {
                 'control_id': control_id,
                 'control_title': control_title,
                 'compliance': compliance,
                 'severity': severity,
-                'auto_remediation': auto_remediation,
                 'resource_id': self.session_account
             }
         else:
@@ -117,7 +115,6 @@ class CrossAccountAccountComplianceChecker:
                 control_title: 'Invalid parameter',
                 compliance: 'Invalid parameter',
                 severity: 'Invalid parameter',
-                auto_remediation: 'Invalid parameter',
                 self.session_account: 'Invalid parameter'
             }
 
